@@ -4,7 +4,7 @@ pipeline {
     environment {
         // Define environment variables
         EC2_HOST = '18.233.167.148'
-        EC2_USER = 'ec2-user'
+        EC2_USER = 'ubuntu'
         // Assuming you've added your SSH private key to Jenkins' credentials store
         SSH_KEY_ID = 'APACHE_SVR_SSH_KEY'
     }
@@ -16,7 +16,7 @@ pipeline {
                 git url: 'https://github.com/Khurram-iq/LearnApacheDeployment.git', branch: 'main'
             }
         }
-
+        
         stage('Deploy to EC2') {
             steps {
                 script {
