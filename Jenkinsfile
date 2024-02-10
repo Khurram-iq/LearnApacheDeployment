@@ -3,10 +3,10 @@ pipeline {
 
     environment {
         // Define environment variables
-        EC2_HOST = '18.233.167.148'
-        EC2_USER = 'ubuntu'
+        EC2_HOST = '172.31.91.31'
+        EC2_USER = 'linux-slave'
         // Assuming you've added your SSH private key to Jenkins' credentials store
-        SSH_KEY_ID = 'APACHE_SVR_SSH_KEY'
+        SSH_KEY_ID = 'linux-slave'
     }
 
     stages {
@@ -30,7 +30,7 @@ pipeline {
                     // SSH and SCP commands to transfer files and restart Apache
                     sshagent(credentials: [SSH_KEY_ID]) {
                         // Copy files to the Apache directory on EC2
-                        sh "scp -o StrictHostKeyChecking=no -r ${env.WORKSPACE}/index.html ${EC2_USER}@${EC2_HOST}:/var/www/html"
+                        sh "scp -o StrictHostKeyChecking=no -r ${env.WORKSPACE} ${EC2_USER}@${EC2_HOST}:/var/www/html/"
 // Optional: Run any commands on EC2, like setting permissions or restarting Apache
                         sh "ssh -o StrictHostKeyChecking=no ${EC2_USER}@${EC2_HOST} 'sudo systemctl restart apache2'"
                     }
