@@ -17,6 +17,13 @@ pipeline {
             }
         }
 
+        stage("checking files"){
+            steps{
+                sh "ls -ltr"
+                sh "pwd"
+            }
+        }
+        
         stage('Deploy to EC2') {
             steps {
                 script {
