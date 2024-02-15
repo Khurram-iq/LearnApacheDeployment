@@ -1,0 +1,37 @@
+pipeline {
+    agent {label 'Linux-Slave'}
+
+    stages {
+        stage('Checkout') {
+            steps {
+                // Check out from GitHub
+                git url: 'https://github.com/Khurram-iq/LearnApacheDeployment.git', branch: 'main'
+            }
+        }
+
+        stage("checking files"){
+            steps{
+                sh "ls -ltr"
+                sh "pwd"
+            }
+        }
+
+        stage('Deploy to EC2') {
+            steps {
+                script {
+                    sh "cp -r ${env.WORKSPACE}/* /var/www/html"
+                    }
+                }
+            }
+        }
+    }
+
+    post {
+        success {
+            echo 'Deployment successful.'
+        }
+        failure {
+            echo 'Deployment failed.'
+        }
+    }
+}
