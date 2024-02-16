@@ -29,7 +29,6 @@ pipeline {
                     }
                 }
             }
-        }
 
         stage('Test for prod environment') { // This stage executes only when 'prod' is the chosen parameter. 
             when {
