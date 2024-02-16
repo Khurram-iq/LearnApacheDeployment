@@ -1,6 +1,12 @@
 pipeline {
     agent {label 'Linux-Slave'}
 
+    environment {
+        // Define environment variables
+        EC2_HOST = '44.201.170.12'
+        SETUP = "dev" // choices: ['dev', "prod"]
+    }
+
     stages {
         stage('Checkout') {
             steps {
@@ -24,6 +30,20 @@ pipeline {
                 }
             }
         }
+
+        stage('Test for prod environment') { // This stage executes only when 'prod' is the chosen parameter. 
+            when {
+                expression {
+                ${SETUP} == 'prod'
+                }
+            }
+            steps {
+                echo "Triggering job Windows-Check for ${SETUP} environment."
+                build job: 'Windows-Check', wait: false, propagate: false, parameters: [
+                string(name: 'WEB_URL', value: "http://${EC2_HOST}/")
+                ]
+            }
+            }
 
     post {
         success {

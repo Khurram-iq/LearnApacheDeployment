@@ -1,6 +1,12 @@
+def EC2_HOST = '44.201.170.127'
 pipeline {
     agent {label 'Windows-Slave'}
 
+    parameters {
+     string(name: 'WEB_URL', defaultValue: "http://${EC2_HOST}/", description: 'You could have other types of parameters besides choice.')
+     string(name: 'EXPECTED_STR', defaultValue: "This is a sample webpage deployed using Jenkins and GitHub integration. It has been updated")
+     }
+  
     stages {
         stage('test cmd shell') {
          steps {
@@ -11,12 +17,8 @@ pipeline {
         stage("Using curl example") {
             steps {
                 script {
-                    def String expected_str = """This is a sample webpage deployed using Jenkins and GitHub integration. It has been updated"""
-                    final String url = "http://44.201.170.127/"
-
-                    final String response = bat(script: "curl -s $url", returnStdout: true).trim()
-
-                    if (response.contains(expected_str)) {
+                    final String response = bat(script: "curl -s $WEB_URL", returnStdout: true).trim()
+                    if (response.contains("$EXPECTED_STR")) {
                         echo "response: $response";
                     }
                      else{
