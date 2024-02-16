@@ -34,7 +34,7 @@ pipeline {
         stage('Test for prod environment') { // This stage executes only when 'prod' is the chosen parameter. 
             when {
                 expression {
-                ${SETUP} == 'prod'
+                "${SETUP}" == 'prod'
                 }
             }
             steps {
@@ -43,7 +43,7 @@ pipeline {
                 string(name: 'WEB_URL', value: "http://${EC2_HOST}/")
                 ]
             }
-            }
+        }
 
     post {
         success {
