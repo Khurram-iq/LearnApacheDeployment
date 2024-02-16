@@ -20,7 +20,6 @@ pipeline {
             steps {
                 script {
                     sh "cp -r ${env.WORKSPACE}/* /var/www/html"
-                    sh "sudo systemctl restart apache2"
                     }
                 }
             }
