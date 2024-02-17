@@ -26,7 +26,7 @@ pipeline {
 
         stage("checking ssh connectivity"){
             steps {
-                sshagent(credentials: ['ssh-credentials-id']) {
+                sshagent(credentials: [SSH_KEY_ID]) {
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
                     ssh-keyscan -t rsa,dsa example.com >> ~/.ssh/known_hosts
