@@ -39,7 +39,7 @@ pipeline {
             }
             steps {
                 echo "Triggering job Windows-Check for ${SETUP} environment."
-                build job: 'Windows-Check', wait: false, propagate: false, parameters: [
+                build job: 'Windows-Check', wait: true, propagate: false, parameters: [
                 string(name: 'WEB_URL', value: "http://${EC2_HOST}/"),
                 string(name: 'EXPECTED_STR', value: "${EXPECTED_STR}")
                 ]
