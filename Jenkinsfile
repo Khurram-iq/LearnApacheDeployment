@@ -6,7 +6,7 @@ pipeline {
         EC2_HOST = '172.31.45.104'
         EC2_USER = 'linux-slave'
         // Assuming you've added your SSH private key to Jenkins' credentials store
-        SSH_KEY_ID = 'linux-slave'
+        SSH_KEY_ID = 'linux'
     }
 
     stages {
