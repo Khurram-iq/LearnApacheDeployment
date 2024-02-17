@@ -3,9 +3,9 @@ pipeline {
 
     environment {
         // Define environment variables
-        EC2_HOST = '44.201.170.127'
-        SETUP = "prod" // choices: ['dev', "prod"]
-        EXPECTED_STR = "This is a sample webpage deployed using Jenkins and GitHub integration. It has been updated"
+        EC2_HOST = '172.31.83.195'
+        SETUP = "dev" // choices: ['dev', "prod"]
+        EXPECTED_STR = "This is a sample webpage deployed using Jenkins and GitHub integration. It has been updatedeeeeeeeeee"
     }
 
     stages {
