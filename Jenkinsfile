@@ -29,7 +29,7 @@ pipeline {
                 sshagent(credentials: [SSH_KEY_ID]) {
                 sh '''
                     [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
-                    ssh-keyscan -t rsa,dsa example.com >> ~/.ssh/known_hosts
+                    ssh-keyscan -t rsa,dsa ${EC2_HOST} >> ~/.ssh/known_hosts
                     ssh ${EC2_USER}@${EC2_HOST} uname
                 '''
                 }
