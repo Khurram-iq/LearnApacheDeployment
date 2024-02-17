@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent {label 'Linux-Slave'}
 
     environment {
         // Define environment variables
