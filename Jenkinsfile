@@ -24,6 +24,18 @@ pipeline {
             }
         }
 
+        stage("checking ssh connectivity"){
+            steps {
+                sshagent(credentials: ['ssh-credentials-id']) {
+                sh '''
+                    [ -d ~/.ssh ] || mkdir ~/.ssh && chmod 0700 ~/.ssh
+                    ssh-keyscan -t rsa,dsa example.com >> ~/.ssh/known_hosts
+                    ssh ${EC2_USER}@${EC2_HOST} uname
+                '''
+                }
+            }
+        }
+
         stage('Deploy to EC2') {
             steps {
                 script {
