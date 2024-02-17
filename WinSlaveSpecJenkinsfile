@@ -4,7 +4,7 @@ pipeline {
 
     parameters {
      string(name: 'WEB_URL', defaultValue: "http://${EC2_HOST}/", description: 'You could have other types of parameters besides choice.')
-     string(name: 'EXPECTED_STR', defaultValue: "This is a sample webpage deployed using Jenkins and GitHub integration. It has been UPFFAFFF")
+     string(name: 'EXPECTED_STR', defaultValue: "This is a sample webpage deployed using Jenkins and GitHub integration. It has been updatedeeeee")
      }
   
     stages {
