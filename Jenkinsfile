@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Define environment variables
-        EC2_HOST = '172.31.85.121'
+        EC2_HOST = '172.31.42.219'
         EC2_USER = 'linux-slave'
         // Assuming you've added your SSH private key to Jenkins' credentials store
         SSH_KEY_ID = 'Linux-Slave'
